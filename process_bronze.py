@@ -16,11 +16,13 @@ year = dbutils.widgets.get("year")
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$source_container $account_name= $account_name
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": source_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$target_container $account_name= $account_name
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": target_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
 
 # COMMAND ----------
 
