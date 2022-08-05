@@ -59,7 +59,7 @@ table_cols = ['Date','DayOfWeek', 'DepTime', 'CRSDepTime', 'ArrTime', 'CRSArrTim
 # COMMAND ----------
 
 source_table = f"{base_loc}/{source_container}/fact_flight/"
-target_table = f"{base_loc}/{target_container}/"
+target_table = f"{base_loc}/{target_container}/fact_flight"
 
 # COMMAND ----------
 

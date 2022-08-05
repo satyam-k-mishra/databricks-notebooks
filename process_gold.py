@@ -24,7 +24,7 @@ dbutils.notebook.run('./mount_datalake', 60, {"container_name": target_container
 
 # COMMAND ----------
 
-source_data = f"{base_loc}/{source_container}"
+source_data = f"{base_loc}/{source_container}/fact_flight/"
 target_table = f"{base_loc}/{target_container}"
 
 # COMMAND ----------
