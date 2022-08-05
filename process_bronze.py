@@ -1,6 +1,6 @@
 # Databricks notebook source
 # Setting up some basic widgets
-dbutils.widgets.text("source_container", "bronze-table", "")
+dbutils.widgets.text("source_container", "landing-zone", "")
 dbutils.widgets.text("account_name", "capstone01", "")
 dbutils.widgets.text("base_location", "dbfs:/mnt/files", "")
 dbutils.widgets.text("target_container", "silver-table", "")
