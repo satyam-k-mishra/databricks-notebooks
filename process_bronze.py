@@ -40,7 +40,7 @@ from pyspark.sql.types import *
 
 # COMMAND ----------
 
-flight_source_loc = f"{base_loc}/{source_container}/flight_details/{year}.parquet"
+flight_source_loc = f"{base_loc}/{source_container}/flight_details/"
 airport_source_loc = f"{base_loc}/{source_container}/airports_data/airports.parquet"
 carrier_source_loc = f"{base_loc}/{source_container}/carriers/carriers.parquet"
 plane_source_loc = f"{base_loc}/{source_container}/plane_data/plane-data.parquet"
@@ -62,21 +62,19 @@ plane_details = spark.read.option("inferschema", 'true').parquet(plane_source_lo
 
 # COMMAND ----------
 
-def write_to_delta(table_name, source_data, source_format, df):
+def write_to_delta(table_name, source_df):
     try:
-        spark.sql(f"COPY INTO {table_name} \
-       FROM {source_data} \
-       FILEFORMAT = {source_format}"
-    )
+        source_df.write.format("delta").save(table_name)
     except:
-        #df = spark.read.format(source_format).option("inferschema", 'true').load(source_data)
-        df.write.format("delta").save(table_name)
-
+        source_df.write.mode("overwrite").format("delta").save(table_name)
+        
+    
+   
 
 # COMMAND ----------
 
 #Writing flight data to delta table
-write_to_delta(flight_target_loc, flight_source_loc, source_format, flight_details)
+write_to_delta(flight_target_loc, flight_details)
 
 # COMMAND ----------
 
@@ -96,4 +94,4 @@ write_to_delta(airports_target_loc, airport_source_loc, source_format, airports_
 
 # COMMAND ----------
 
-plane_df = spark.read.format("delta").load("dbfs:/mnt/files/bronze-table/dim_plane/")
+flight_df = spark.read.format("delta").load("dbfs:/mnt/files/bronze-table/fact_flight/")
