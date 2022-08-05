@@ -1,10 +1,10 @@
 # Databricks notebook source
 # Setting up some basic widgets
-dbutils.widgets.dropdown("source_container", "bronze-table", "")
-dbutils.widgets.dropdown("account_name", "capstone01", "")
-dbutils.widgets.dropdown("base_location", "dbfs:/mnt/files", "")
-dbutils.widgets.dropdown("target_container", "silver-table", "")
-dbutils.widgets.dropdown("year", "1988", "")
+dbutils.widgets.dropdown("source_container", "bronze-table", ["bronze-table"])
+dbutils.widgets.dropdown("account_name", "capstone01", ["capstone01"])
+dbutils.widgets.dropdown("base_location", "dbfs:/mnt/files", ["dbfs:/mnt/files"])
+dbutils.widgets.dropdown("target_container", "silver-table", ["silver-table"])
+dbutils.widgets.dropdown("year", "1988", ["1998"])
 
 # COMMAND ----------
 
