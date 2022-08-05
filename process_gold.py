@@ -14,11 +14,13 @@ base_loc = dbutils.widgets.get("base_location")
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$source_container $account_name= $account_name
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": source_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$source_container $account_name= $account_name
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": target_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
 
 # COMMAND ----------
 
@@ -54,8 +56,10 @@ df = flight_df.groupby("FlightNum", "Date").agg(
 # COMMAND ----------
 
 # Overwriting the gold table with each execution. It will refresh the table. 
-target_table = "dbfs:/mnt/files/gold-table/"
-df.write.mode("overwrite").format("delta").save(target_table)
+try:
+    df.write.mode("overwrite").format("delta").save(target_table)
+except:
+    df.write.format("delta").save(target_table)
 
 # COMMAND ----------
 

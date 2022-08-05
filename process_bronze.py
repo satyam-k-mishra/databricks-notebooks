@@ -70,7 +70,7 @@ def write_to_delta(table_name, source_data, source_format, df):
     )
     except:
         #df = spark.read.format(source_format).option("inferschema", 'true').load(source_data)
-        df.write.mode("overwrite").format("delta").save(table_name)
+        df.write.format("delta").save(table_name)
 
 
 # COMMAND ----------

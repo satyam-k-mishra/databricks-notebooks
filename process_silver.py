@@ -14,11 +14,17 @@ base_loc = dbutils.widgets.get("base_location")
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$source_container $account_name= $account_name
+source_container
 
 # COMMAND ----------
 
-# MAGIC %run ./mount_datalake $container_name=$source_container $account_name= $account_name
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": source_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
+
+# COMMAND ----------
+
+dbutils.notebook.run('./mount_datalake', 60, {"container_name": target_container, "account_name": account_name})
+#dbutils.notebook.run( $container_name=$source_container $account_name= $account_name
 
 # COMMAND ----------
 
@@ -103,7 +109,10 @@ df = (
 
 # COMMAND ----------
 
-df.write.mode("overwrite").format("delta").save(target_table)
+try:
+    df.write.format("delta").save(target_table)
+except:
+    df.write.mode("overwrite").format("delta").save(target_table)
 
 # COMMAND ----------
 
