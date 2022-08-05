@@ -1,7 +1,7 @@
 # Databricks notebook source
 dbutils.widgets.text("container_name", "")
 dbutils.widgets.text("account_name", "capstone01")
-mount_folder = dbutils.widgets.get("container_name")
+container_name = dbutils.widgets.get("container_name")
 account_name = dbutils.widgets.get("account_name")
 
 # COMMAND ----------
