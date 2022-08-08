@@ -82,6 +82,6 @@ spark.sql(f"CREATE TABLE IF NOT EXISTS flight_db.gold_flight_details USING delta
 
 # COMMAND ----------
 
-# %sql
-# SELECT *
-# FROM gold_flight_details;
+# MAGIC %sql
+# MAGIC SELECT *
+# MAGIC FROM gold_flight_details;

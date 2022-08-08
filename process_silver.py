@@ -122,11 +122,7 @@ spark.sql(f"CREATE DATABASE IF NOT EXISTS flight_db")
 # COMMAND ----------
 
 #Registering delta table with hive database
-spark.sql(f"CREATE TABLE IF NOT EXISTS flight_db.silver_flight_details USING delta LOCATION '{target_table}'")
-
-# COMMAND ----------
-
-target_table
+spark.sql(f"CREATE TABLE IF NOT EXISTS flight_db.silver_flight_details USING delta LOCATION 'dbfs:/mnt/files/silver-table/fact_flight/'")
 
 # COMMAND ----------
 
@@ -134,6 +130,6 @@ df = spark.read.format("delta").load("dbfs:/mnt/files/silver-table/fact_flight")
 
 # COMMAND ----------
 
-# %sql
-# SELECT *
-# FROM flight_db.silver_flight_details;
+# MAGIC %sql
+# MAGIC SELECT *
+# MAGIC FROM flight_db.silver_flight_details;
