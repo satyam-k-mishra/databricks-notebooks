@@ -77,18 +77,18 @@ write_to_delta(flight_target_loc, flight_details)
 # COMMAND ----------
 
 # Writing plane data to delta table
-write_to_delta(plane_target_loc, plane_source_loc, source_format, plane_details)
+write_to_delta(plane_target_loc, plane_details)
     
 
 # COMMAND ----------
 
 # Writing carriers data to delta table
-write_to_delta(carrier_target_loc, carrier_source_loc, source_format, carriers_data)    
+write_to_delta(carrier_target_loc, carriers_data)    
 
 # COMMAND ----------
 
 # Writing airports data to delta table
-write_to_delta(airports_target_loc, airport_source_loc, source_format, airports_data)
+write_to_delta(airports_target_loc, airports_data)
 
 # COMMAND ----------
 
