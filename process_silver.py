@@ -59,7 +59,7 @@ table_cols = ['Date','DayOfWeek', 'DepTime', 'CRSDepTime', 'ArrTime', 'CRSArrTim
 # COMMAND ----------
 
 source_table = f"{base_loc}/{source_container}/fact_flight/"
-target_table = f"{base_loc}/{target_container}/fact_flight"
+target_table = f"{base_loc}/{target_container}/fact_flight/"
 
 # COMMAND ----------
 
@@ -126,6 +126,14 @@ spark.sql(f"CREATE TABLE IF NOT EXISTS flight_db.silver_flight_details USING del
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT *
-# MAGIC FROM flight_db.silver_flight_details;
+target_table
+
+# COMMAND ----------
+
+df = spark.read.format("delta").load("dbfs:/mnt/files/silver-table/fact_flight")
+
+# COMMAND ----------
+
+# %sql
+# SELECT *
+# FROM flight_db.silver_flight_details;

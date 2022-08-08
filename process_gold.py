@@ -57,9 +57,10 @@ df = flight_df.groupby("FlightNum", "Date").agg(
 
 # Overwriting the gold table with each execution. It will refresh the table. 
 try:
-    df.write.mode("overwrite").format("delta").save(target_table)
-except:
     df.write.format("delta").save(target_table)
+except:
+    df.write.mode("overwrite").format("delta").save(target_table)
+    
 
 # COMMAND ----------
 
@@ -81,6 +82,6 @@ spark.sql(f"CREATE TABLE IF NOT EXISTS flight_db.gold_flight_details USING delta
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT *
-# MAGIC FROM gold_flight_details;
+# %sql
+# SELECT *
+# FROM gold_flight_details;
