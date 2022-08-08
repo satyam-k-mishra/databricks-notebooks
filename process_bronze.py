@@ -64,9 +64,9 @@ plane_details = spark.read.option("inferschema", 'true').parquet(plane_source_lo
 
 def write_to_delta(table_name, source_df):
     try:
-        source_df.write.mode("overwrite").format("delta").save(table_name)
-    except:
         source_df.write.format("delta").save(table_name)
+    except:
+        source_df.write.mode("overwrite").format("delta").save(table_name)
         
 
 # COMMAND ----------
