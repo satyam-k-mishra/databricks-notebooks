@@ -3,7 +3,7 @@
 dbutils.widgets.text("source_container", "landing-zone", "")
 dbutils.widgets.text("account_name", "capstone01", "")
 dbutils.widgets.text("base_location", "dbfs:/mnt/files", "")
-dbutils.widgets.text("target_container", "silver-table", "")
+dbutils.widgets.text("target_container", "bronze-table", "")
 dbutils.widgets.text("year", "1988", "")
 
 # COMMAND ----------
